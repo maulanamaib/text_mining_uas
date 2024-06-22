@@ -18,13 +18,6 @@ label_encoder = LabelEncoder()
 tokenizer = BertTokenizer.from_pretrained("indobenchmark/indobert-base-p1")
 model = BertModel.from_pretrained("indobenchmark/indobert-base-p1")
 
-def bersihkan_teks(teks):
-    teks_bersih = re.sub(r'http\S+', '', teks)
-    teks_bersih = re.sub(r'https\S+', '', teks_bersih)
-    teks_bersih = re.sub(r'Simak breaking news berita pilihan langsung ponselmu. Pilih saluran andalanmu akses berita Kompas\.com WhatsApp Channel Pastikan install aplikasi WhatsApp ya\.', '', teks_bersih)
-    teks_bersih = re.sub(r'[^A-Za-z0-9\s.,!?]', '', teks_bersih)
-    return teks_bersih
-
 def summarize_text(text):
     sentences = nltk.sent_tokenize(text)
     
@@ -49,7 +42,7 @@ def summarize_text(text):
 
     return summary
 
-data = pd.read_excel("KompasCrawlData.xlsx")
+data = pd.read_excel("bersih.xlsx")
 df = pd.DataFrame(data)
 st.write(df)
 
