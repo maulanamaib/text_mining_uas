@@ -16,31 +16,6 @@ nltk.download('stopwords')
 label_encoder = LabelEncoder()
 
 tokenizer = BertTokenizer.from_pretrained("indobenchmark/indobert-base-p1")
-model = BertModel.from_pretrained("indobenchmark/indobert-base-p1")
-
-def summarize_text(text):
-    sentences = nltk.sent_tokenize(text)
-    
-    # Tokenisasi dan encoding setiap kalimat dalam batch
-    inputs = tokenizer(sentences, return_tensors="pt", padding=True, truncation=True, max_length=512)
-    outputs = model(**inputs)
-
-    # Mendapatkan vektor fitur dari lapisan terakhir
-    sentence_embeddings = outputs.last_hidden_state.mean(dim=1).detach().numpy()
-
-    # Menghitung kesamaan kosinus antar kalimat
-    similarity_matrix = cosine_similarity(sentence_embeddings)
-
-    # Menggunakan metode pagerank untuk menentukan peringkat kalimat
-    import networkx as nx
-    nx_graph = nx.from_numpy_array(similarity_matrix)
-    scores = nx.pagerank(nx_graph)
-
-    # Memilih kalimat dengan skor tertinggi
-    ranked_sentences = sorted(((scores[i], s) for i, s in enumerate(sentences)), reverse=True)
-    summary = " ".join([ranked_sentences[i][1] for i in range(min(2, len(ranked_sentences)))])  # Mengambil 2 kalimat teratas
-
-    return summary
 
 data = pd.read_excel("bersih.xlsx")
 df = pd.DataFrame(data)
