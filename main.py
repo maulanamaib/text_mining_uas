@@ -74,7 +74,7 @@ X_tfidf = vectorizer.fit_transform(X)
 X_tfidf
 st.code(Class2, language='python')
 st.write('Bagi data menjadi data latih dan uji')
-X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(X_tfidf, y, df3.index, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(X_tfidf, y, data.index, test_size=0.2, random_state=42)
 
 st.code(Class3, language='python')
 # Inisialisasi dan latih model Naive Bayes
@@ -92,7 +92,7 @@ print("Classification Report:\n", classification_report(y_test, y_pred, target_n
 st.code(Class5, language='python')
 # Buat tabel baru berisi kelas asli dan prediksi kelas
 result_df = pd.DataFrame({
-    'Ringkasan': df3.loc[idx_test, 'Ringkasan'].values,
+    'Ringkasan': data.loc[idx_test, 'Ringkasan'].values,
     'Kelas Asli': y_test,
     'Prediksi Kelas': y_pred
 })
