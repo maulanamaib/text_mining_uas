@@ -46,8 +46,8 @@ Class3='''
     '''
 Class4='''
     #Class
-    print("Classification Report:\n", classification_report(y_test, y_pred, target_names=[
-    'Bola', 'Edu', 'Food', 'Health', 'Lestari', 'Otomotif', 'Travel']))
+    classification_report(y_test, y_pred, target_names=[
+    'Bola', 'Edu', 'Food', 'Health', 'Lestari', 'Otomotif', 'Travel'])
     '''
 Class5='''
     #Class
@@ -85,9 +85,7 @@ y_pred = model.predict(X_test)
 y_pred
 # Evaluasi model
 st.code(Class4, language='python')
-"Classification Report:\n", classification_report(y_test, y_pred, target_names=[
-    'Bola', 'Edu', 'Food', 'Health', 'Lestari', 'Otomotif', 'Travel'
-])
+"Classification Report:\n", classification_report(y_test, y_pred, target_names=['Bola', 'Edu', 'Food', 'Health', 'Lestari', 'Otomotif', 'Travel'])
 
 st.code(Class5, language='python')
 # Buat tabel baru berisi kelas asli dan prediksi kelas
