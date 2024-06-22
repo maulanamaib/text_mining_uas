@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report, accuracy_score
 
-
+st.markdown("<h1 style='text-align: center; color: white; margin:0 ; padding:0;'>Clasiffication text kompas.com</h1>", unsafe_allow_html=True)
 data = pd.read_excel("bersih.xlsx")
 df = pd.DataFrame(data)
 data
